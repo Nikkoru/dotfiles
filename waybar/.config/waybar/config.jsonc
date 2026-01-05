@@ -1,0 +1,228 @@
+// -*- mode: jsonc -*-
+[
+    {
+        "layer": "top", // Waybar at top layer
+        "position": "top", // Waybar position (top|bottom|left|right)
+        "height": 25, // Waybar height (to be removed for auto height)
+        "width":1900, // Waybar width
+        "spacing": 2, // Gaps between modules (4px)
+        // Choose the order of the modules
+        "modules-left": [
+            "hyprland/workspaces",
+            "mpris"
+        ],
+        "modules-center": [
+            "hyprland/window"
+        ],
+        "modules-right": [
+            "group/system",
+            "group/tray",
+            "clock"
+        ],
+
+        // Modules configuration
+        "hyprland/workspaces": {
+            "active-only": false,
+            "disable-scroll": true,
+            "all-outputs": true,
+            "warp-on-scroll": false,
+            "format": "{icon} <sub>{windows}</sub>",
+            "window-rewrite-default": "",
+            "window-rewrite": {
+                "class<chromium> title<.*youtube.*>": "",
+                "class<chromium> title<.*github.*>": "",
+                "class<chromium> title<.*discord.*>": "",
+                "class<chromium> title<.*whatsapp.*>": "󰖣",
+                "class<spotify>": "",        
+                "class<chromium>": "",
+                "class<org.mozilla.Thunderbird>": "󰇮 ",
+                "title<.*nvim.*>": " ",           
+                "class<kitty>": " ",
+                "class<code>": " "
+            }
+        },
+        "mpris": {
+            "format": "{status_icon} | {dynamic}",
+            "interval": 1,
+            "dynamic-len": 60,
+            "status-icons": {
+                "playing": "",
+                "paused": "",
+                "stopped": ""
+            },
+            "dynamic-order": ["title", "artist"]
+        },
+
+        "hyprland/window": {
+        "format": " {{ {title} }} ",
+            "separate-outputs": true
+        },
+
+        "group/system": {
+            "orientation": "horizontal",
+            "modules": [
+                "temperature",
+                "cpu",
+                "memory"
+            ]
+        },
+
+        "group/tray": {
+            "orientation": "horizontal",
+            "modules": [
+                "idle_inhibitor",
+                "pulseaudio",
+                "network",
+                "battery",
+                "tray"
+            ]
+        },
+
+        "idle_inhibitor": {
+            "format": "{icon}",
+            "format-icons": {
+                "activated": "",
+                "deactivated": ""
+            }
+        },
+        "tray": {
+            "icon-size": 16,
+            "spacing": 1,
+            "smooth-scrolling-threshold": 1.0
+        // "icons": {
+            //   "blueman": "bluetooth",
+            //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+            // }
+        },
+        "clock": {
+            // "timezone": "America/New_York",
+            "interval": 1,
+            "format": "{:%H:%M:%S}",
+            "tooltip-format": "<tt><small>{calendar}</small></tt>",
+            "format-alt": "{:%d/%m/%Y}"
+        },
+        "cpu": {
+            "format": "  {usage}%",
+            "on-click": "kitty -e btop"
+        },
+        "memory": {
+            "format": "  {}%",
+            "tooltip-format": "Used: {used}GB/{total}GB ({percentage}%)\nAvailable: {avail}GB\nSwap Used: {swapUsed}GB/{swapTotal}GB ({swapPercentage}%)"
+        },
+        "temperature": {
+            // "thermal-zone": 2,
+            // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+            "critical-threshold": 80,
+            "format": "{icon} {temperatureC}°C ",
+            "format-icons": ["", "", ""],
+            "tooltip-format": "Temperature: {temperatureC} °C"
+        },
+        "backlight": {
+            "device": "eDP-1",
+            "format": "{percent}%{icon}",
+            "format-icons": ["", "", "", "", "", "", "", "", ""]
+        },
+        "battery": {
+            "states": {
+                "good": 100,
+                "warning": 50,
+                "critical": 15
+            },
+            "format": "{capacity}%{icon}",
+            "format-full": "{capacity}%{icon}",
+            "format-charging": "{capacity}%󰂄",
+            "format-plugged": "{capacity}% ",
+            "format-alt": "{time}{icon}",
+            // "format-good": "", // An empty format will hide the module
+            // "format-full": "",
+            "format-icons": [
+              "󰁺",
+              "󰁻",
+              "󰁼",
+              "󰁾",
+              "󰁿",
+              "󰂀",
+              "󰂁", 
+              "󰂂", 
+              "󰁹"
+            ]
+        },
+        "power-profiles-daemon": {
+          "format": "{icon}",
+          "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+          "tooltip": true,
+          "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+          }
+        },
+        "network": {
+            // "interface": "wlp2*", // (Optional) To force the use of this interface
+            "family": "ipv4",
+            "format-ethernet": "󰈀 ",
+              "format-wifi": "{icon}",
+            "format-linked": "󰲐 ",
+            "format-disconnected": "󱘖 ",
+            "format-icons": [
+              "󰤫 ",
+              "󰤯 ",
+              "󰤟 ",
+              "󰤢 ",
+              "󰤥 ",
+              "󰤨 "
+            ],
+            "tooltip-format": " {signalStrength}% [{essid} - {ifname}] {frequency}GHz\n{ipaddr}/{cidr}\nUP[{bandwidthUpBits}] DWN[{bandwidthDownBits}] TOT[{bandwidthTotalBits}]\nGATEWAY: {gwaddr}",
+            "format-alt": "{icon} {essid}",
+            "on-click-right": "nmgui" 
+        },
+        "pulseaudio": {
+            // "scroll-step": 1, // %, can be a float
+            "format": "{volume}%{icon}{format_source}",
+            "format-bluetooth": "{volume}%{icon}{format_source}",
+            "format-bluetooth-muted": " {icon}{format_source}",
+            "format-muted": "{format_source}",
+            "format-source": "{volume}%",
+            "format-source-muted": " ",
+            "format-icons": {
+                "headphone": " ",
+                "hands-free": " ",
+                "headset": " ",
+                "phone": " ",
+                "portable": " ",
+                "car": " ",
+                "default": ["", " ", " "]
+            },
+            "on-click": "pavucontrol"
+        },
+        "custom/power": {
+            "format" : "⏻",
+            "tooltip": false,
+            "menu": "on-click",
+            "menu-file": "~/.config/waybar/power_menu.xml",
+            "menu-actions": {
+                "shutdown": "shutdown",
+                "reboot": "reboot",
+                "suspend": "systemctl suspend",
+                "hibernate": "systemctl hibernate"
+            }
+        }
+    },
+    {
+        "layer": "top",
+        "position": "bottom",
+        "name": "bottomBar",
+        "mode": "invisible",
+        
+        "modules-left": [
+            "disk"
+        ],
+        "modules-center": [
+            "hyprland/workspaces"
+        ],
+        "modules-right": [
+            ""
+        ]
+    }
+]
