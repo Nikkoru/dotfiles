@@ -113,6 +113,6 @@ export PATH=$PATH:/home/niko/.spicetify
 export PATH="$PATH:/home/niko/.local/bin"
 
 # path for scripts
-export PATH="$PATH:/home/niko/scripts"
+export PATH="$PATH:/home/niko/Scripts"
 
 

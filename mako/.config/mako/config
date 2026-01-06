@@ -1,0 +1,39 @@
+# Style
+layer=overlay
+background-color=#FFFFFF
+# Style
+background-color=#FFFFFF
+text-color=#000000
+
+font= monospace 12
+width=180
+height=60
+
+outer-margin=1
+
+border-size=1
+border-color=#CFCFCF
+border-radius=2
+
+# Icons
+icons=1
+max-icon-size=34
+icon-location=left
+
+# Position
+layer=top
+anchor=bottom-right
+
+# Notification
+default-timeout=10000
+ignore-timeout=0
+max-visible=5
+history=1
+
+# Actions
+actions=1
+
+# Binding
+on-button-left=invoke-default-action
+on-button-middle=dismiss-group
+on-button-right=dismiss
