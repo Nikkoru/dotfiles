@@ -16,7 +16,7 @@
         ],
         "modules-right": [
             "group/system",
-            "group/tray",
+            "group/systemTray",
             "clock"
         ],
 
@@ -27,14 +27,14 @@
             "all-outputs": true,
             "warp-on-scroll": false,
             "format": "{icon} <sub>{windows}</sub>",
-            "window-rewrite-default": "",
+            "window-rewrite-default": " ",
             "window-rewrite": {
-                "class<chromium> title<.*youtube.*>": "",
-                "class<chromium> title<.*github.*>": "",
-                "class<chromium> title<.*discord.*>": "",
-                "class<chromium> title<.*whatsapp.*>": "󰖣",
-                "class<spotify>": "",        
-                "class<chromium>": "",
+                "class<chromium> title<.*youtube.*>": " ",
+                "class<chromium> title<.*github.*>": " ",
+                "class<chromium> title<.*discord.*>": " ",
+                "class<chromium> title<.*whatsapp.*>": "󰖣 ",
+                "class<spotify>": " ",        
+                "class<chromium>": " ",
                 "class<org.mozilla.Thunderbird>": "󰇮 ",
                 "title<.*nvim.*>": " ",           
                 "class<kitty>": " ",
@@ -46,9 +46,9 @@
             "interval": 1,
             "dynamic-len": 60,
             "status-icons": {
-                "playing": "",
+                "playing": " ",
                 "paused": "",
-                "stopped": ""
+                "stopped": " "
             },
             "dynamic-order": ["title", "artist"]
         },
@@ -67,7 +67,7 @@
             ]
         },
 
-        "group/tray": {
+        "group/systemTray": {
             "orientation": "horizontal",
             "modules": [
                 "idle_inhibitor",
@@ -81,8 +81,8 @@
         "idle_inhibitor": {
             "format": "{icon}",
             "format-icons": {
-                "activated": "",
-                "deactivated": ""
+                "activated": " ",
+                "deactivated": " "
             }
         },
         "tray": {
