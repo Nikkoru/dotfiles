@@ -41,33 +41,49 @@ window#waybar.empty {
     color: @text;
     border-radius: 3px;
 }
-#mpris.playing {
+#mpris.spotify {
+    background-color: rgba(35, 214, 96, 0.7);
+}
+#mpris.vlc {
+    background-color: rgba(255, 160, 0, 0.7);
+}
+#mpris.default {
     background-color: rgba(0, 138, 108, 0.7);
 }
-
 
 .modules-center {
     background: black;
     border-radius: 3px;
 }
 
+#custom-split {
+    padding: 0 4px;
+    color: #525252;
+}
 
 #system {
     margin: 0 10px;
     background-color: #000000;
     border-radius: 3px;
 }
+#temperature,
+#cpu,
+#memory {
+    padding: 0 5px;
+}
 #temperature {
     border-bottom-left-radius: 3px;
     border-top-left-radius: 3px;
 }
 #temperature.critical {
-    background-color: #eb4e4b;
+    color: #ff0000;
 }
 #cpu {
     color: #ffffff;
 }
 #memory {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 
@@ -77,10 +93,11 @@ window#waybar.empty {
 }
 #idle_inhibitor,
 #pulseaudio,
+#bluetooth,
 #network,
 #battery,
 #tray {
-    padding: 0 5px;
+    padding: 0 4px;
 }
 #idle_inhibitor {
     background-color: #2d3436;
@@ -91,33 +108,77 @@ window#waybar.empty {
     background-color: #ecf0f1;
     color: #2d3436;
 }
+#power-profiles-daemon {
+    padding-right: 3px;
+}
+#power-profiles-daemon.performance {
+    color: #ffffff;
+}
+#power-profiles-daemon.balanced {
+    box-shadow: inset 0 -3px #2980b9;
+    color: #ffffff;
+}
+#power-profiles-daemon.power-saver {
+    box-shadow: inset 0 -3px #2ecc71;
+    background-color: #2ecc71;
+    color: #000000;
+}
+
 #pulseaudio {
     color: #ffffff;
 }
 #pulseaudio.muted {
-    box-shadow: inset 0 -3px #727272; 
-    color: #ffffff;
+    color: #727272; 
 }
-#network {
+#bluetooth {
+}
+#bluetooth.disabled,
+#bluetooth.off {
+    color: #ff0000;
+}
+#bluetooth.connected {
+    color: #00ff00;
+}
+@keyframes blueBlink {
+    to { 
+        color: blue; 
+    }
+}
+#bluetooth.discovering,
+#bluetooth.pairable {
+    color: #ffffff;
+    animation-name: blueBlink;
+    animation-duration: 1s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+#network.ethernet,
+#network.disconnected {
+    /* this is a hacky fix for centering. if using otf-font-awesome you may want to use this */
+    padding-right: 2px;
+}
+#network.ethernet {
+    color: #00ff00;
 }
 #network.disconnected {
-    background-color: rgba(245, 60, 60, 0.2);
+    color: rgba(245, 60, 60, 0.2);
 }
 #battery {
     color: #ffffff;
+    /* this is a hacky fix for centering. if using otf-font-awesome you may want to use this */
+    padding-right: 7px;
 }
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: rgba(38, 166, 91, 0.2);
+    color: rgb(38, 166, 91);
 }
 @keyframes blink {
     to {
-        background-color: rgba(218, 7, 7, 0.2);
+        color: rgba(218, 7, 7, 0.2);
     }
 }
 #battery.warning:not(.charging) {
-    background-color: rgba(219, 235, 75, 0.2);
-    color: #ffffff;
+    color: rgba(219, 235, 75, 0.2);
 }
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
@@ -148,6 +209,7 @@ window#waybar.empty {
 #memory:hover,
 #power-profiles-daemon:hover, 
 #temperature:hover,
+#bluetooth:hover,
 #battery:hover {
     background-color: rgba(163, 120, 0, 0.5);
 }
@@ -193,6 +255,8 @@ window#waybar.empty {
 #custom-media,
 #tray,
 #mode,
+#battery,
+#battery,
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon {
@@ -223,28 +287,6 @@ window#waybar.empty {
 }
 */
 
-#power-profiles-daemon {
-    padding-right: 3px;
-}
-
-#power-profiles-daemon.performance {
-    color: #ffffff;
-}
-
-#power-profiles-daemon.balanced {
-    box-shadow: inset 0 -3px #2980b9;
-    color: #ffffff;
-}
-
-#power-profiles-daemon.power-saver {
-    box-shadow: inset 0 -3px #2ecc71;
-    background-color: #2ecc71;
-    color: #000000;
-}
-
-label:focus {
-    background-color: #000000;
-}
 
 #disk {
 }

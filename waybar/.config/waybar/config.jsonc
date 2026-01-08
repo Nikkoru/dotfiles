@@ -3,7 +3,7 @@
     {
         "layer": "top", // Waybar at top layer
         "position": "top", // Waybar position (top|bottom|left|right)
-        "height": 25, // Waybar height (to be removed for auto height)
+        "height": 26, // Waybar height (to be removed for auto height)
         "width":1900, // Waybar width
         "spacing": 2, // Gaps between modules (4px)
         // Choose the order of the modules
@@ -29,12 +29,13 @@
             "format": "{icon} <sub>{windows}</sub>",
             "window-rewrite-default": " ",
             "window-rewrite": {
-                "class<chromium> title<.*youtube.*>": " ",
+                "class<chromium> title<.*youtube.*>": "",
                 "class<chromium> title<.*github.*>": " ",
-                "class<chromium> title<.*discord.*>": " ",
                 "class<chromium> title<.*whatsapp.*>": "󰖣 ",
-                "class<spotify>": " ",        
-                "class<chromium>": " ",
+                "class<spotify>": "",        
+                "class<chromium>": "",
+                "class<steam>": "",
+                "title<.*discord.*>": " ",
                 "class<org.mozilla.Thunderbird>": "󰇮 ",
                 "title<.*nvim.*>": " ",           
                 "class<kitty>": " ",
@@ -42,9 +43,14 @@
             }
         },
         "mpris": {
-            "format": "{status_icon} | {dynamic}",
+            "format": "{status_icon} | {player_icon} {dynamic}",
             "interval": 1,
-            "dynamic-len": 60,
+            "dynamic-len": 50,
+            "player-icons": {
+                "default": " ",
+                "spotify": "",
+                "vlc": "󰕼"
+            },
             "status-icons": {
                 "playing": " ",
                 "paused": "",
@@ -58,11 +64,19 @@
             "separate-outputs": true
         },
 
+        "custom/split": {
+            "orientation": "horizontal",
+            "format": "|",
+            "tooltip": false
+        },
+
         "group/system": {
             "orientation": "horizontal",
             "modules": [
                 "temperature",
+                "custom/split",
                 "cpu",
+                "custom/split",
                 "memory"
             ]
         },
@@ -71,9 +85,17 @@
             "orientation": "horizontal",
             "modules": [
                 "idle_inhibitor",
+                "custom/split",
+                "power-profiles-daemon",
+                "custom/split",
                 "pulseaudio",
+                "custom/split",
+                "bluetooth",
+                "custom/split",
                 "network",
+                "custom/split",
                 "battery",
+                "custom/split",
                 "tray"
             ]
         },
@@ -81,8 +103,8 @@
         "idle_inhibitor": {
             "format": "{icon}",
             "format-icons": {
-                "activated": " ",
-                "deactivated": " "
+                "activated": "",
+                "deactivated": ""
             }
         },
         "tray": {
@@ -102,7 +124,7 @@
             "format-alt": "{:%d/%m/%Y}"
         },
         "cpu": {
-            "format": "  {usage}%",
+            "format": "   {usage}%",
             "on-click": "kitty -e btop"
         },
         "memory": {
@@ -113,7 +135,7 @@
             // "thermal-zone": 2,
             // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
             "critical-threshold": 80,
-            "format": "{icon} {temperatureC}°C ",
+            "format": "{icon} {temperatureC}°C",
             "format-icons": ["", "", ""],
             "tooltip-format": "Temperature: {temperatureC} °C"
         },
@@ -131,7 +153,7 @@
             "format": "{capacity}%{icon}",
             "format-full": "{capacity}%{icon}",
             "format-charging": "{capacity}%󰂄",
-            "format-plugged": "{capacity}% ",
+            "format-plugged": "{capacity}%",
             "format-alt": "{time}{icon}",
             // "format-good": "", // An empty format will hide the module
             // "format-full": "",
@@ -158,6 +180,11 @@
             "power-saver": ""
           }
         },
+        "bluetooth": {
+            "format": "",
+            "format-connected-battery": " {device_battery_percentage}%",
+            "on-click": "blueman-manager"
+        },
         "network": {
             // "interface": "wlp2*", // (Optional) To force the use of this interface
             "family": "ipv4",
@@ -174,27 +201,28 @@
               "󰤨 "
             ],
             "tooltip-format": " {signalStrength}% [{essid} - {ifname}] {frequency}GHz\n{ipaddr}/{cidr}\nUP[{bandwidthUpBits}] DWN[{bandwidthDownBits}] TOT[{bandwidthTotalBits}]\nGATEWAY: {gwaddr}",
-            "format-alt": "{icon} {essid}",
+            "format-alt": "{icon}<sub>{essid} ({signalStrength}%)</sub>",
             "on-click-right": "nmgui" 
         },
         "pulseaudio": {
             // "scroll-step": 1, // %, can be a float
-            "format": "{volume}%{icon}{format_source}",
-            "format-bluetooth": "{volume}%{icon}{format_source}",
-            "format-bluetooth-muted": " {icon}{format_source}",
-            "format-muted": "{format_source}",
-            "format-source": "{volume}%",
+            "format": "{volume}% {icon}",
+            // "format-bluetooth": "{volume}% {icon}  {format_source}",
+            // "format-bluetooth-muted": "  {icon}  {format_source}",
+            "format-alt": "{format_source}",
+            "format-muted": "",
+            "format-source": "{volume}% ",
             "format-source-muted": " ",
             "format-icons": {
                 "headphone": " ",
-                "hands-free": " ",
-                "headset": " ",
+                "hands-free": "",
+                "headset": "",
                 "phone": " ",
                 "portable": " ",
                 "car": " ",
                 "default": ["", " ", " "]
             },
-            "on-click": "pavucontrol"
+            "on-click-right": "pavucontrol"
         },
         "custom/power": {
             "format" : "⏻",
