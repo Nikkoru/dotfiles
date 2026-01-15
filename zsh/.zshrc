@@ -115,6 +115,5 @@ export PATH="$PATH:/home/niko/.local/bin"
 # path for scripts
 export PATH="$PATH:/home/niko/Scripts"
 
-# path for bina
-
+# path for bins
 export PATH="$PATH:/home/niko/bin"

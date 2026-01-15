@@ -27,8 +27,8 @@ keymap.set("n", "<A-j>", "<cmd>m +1<CR>")
 keymap.set("v", "<A-k>", "<cmd>m'<-2<CR>gv=gv")
 keymap.set("v", "<A-j>", "<cmd>m'>+1<CR>gv=gv")
 
-keymap.set("n", "<leader>ac", "gcc");
-keymap.set("v", "<leader>ac", "gc");
+keymap.set("n", "<leader>ac", "gcc")
+keymap.set("v", "<leader>ac", "gc")
 
 -- LSP utilities
 keymap.set("n", "<leader>se", "<cmd>lua vim.diagnostic.open_float()<CR>")

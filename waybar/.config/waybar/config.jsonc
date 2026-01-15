@@ -27,14 +27,17 @@
             "all-outputs": true,
             "warp-on-scroll": false,
             "format": "{icon} <sub>{windows}</sub>",
-            "window-rewrite-default": " ",
+            "window-rewrite-default": "",
             "window-rewrite": {
                 "class<chromium> title<.*youtube.*>": "",
                 "class<chromium> title<.*github.*>": " ",
                 "class<chromium> title<.*whatsapp.*>": "󰖣 ",
+                "class<org.kde.dolphin>": "󰉓 ",
                 "class<spotify>": "",        
                 "class<chromium>": "",
                 "class<steam>": "",
+                "class<vlc>": "󰕼",
+                "class<anki>": "󰘸 ",
                 "title<.*discord.*>": " ",
                 "class<org.mozilla.Thunderbird>": "󰇮 ",
                 "title<.*nvim.*>": " ",           
@@ -129,7 +132,8 @@
         },
         "memory": {
             "format": "  {}%",
-            "tooltip-format": "Used: {used}GB/{total}GB ({percentage}%)\nAvailable: {avail}GB\nSwap Used: {swapUsed}GB/{swapTotal}GB ({swapPercentage}%)"
+            "tooltip-format": "Used: {used}GB/{total}GB ({percentage}%)\nAvailable: {avail}GB\nSwap Used: {swapUsed}GB/{swapTotal}GB ({swapPercentage}%)",
+            "on-click": "kitty -e btop"
         },
         "temperature": {
             // "thermal-zone": 2,
@@ -137,7 +141,8 @@
             "critical-threshold": 80,
             "format": "{icon} {temperatureC}°C",
             "format-icons": ["", "", ""],
-            "tooltip-format": "Temperature: {temperatureC} °C"
+            "tooltip-format": "Temperature: {temperatureC} °C",
+            "on-click": "kitty -e btop"
         },
         "backlight": {
             "device": "eDP-1",
@@ -150,11 +155,11 @@
                 "warning": 50,
                 "critical": 15
             },
-            "format": "{capacity}%{icon}",
-            "format-full": "{capacity}%{icon}",
-            "format-charging": "{capacity}%󰂄",
-            "format-plugged": "{capacity}%",
-            "format-alt": "{time}{icon}",
+            "format": "{capacity}% {icon}",
+            "format-full": "{capacity}% {icon}",
+            "format-charging": "{capacity}% 󰂄",
+            "format-plugged": "{capacity}% ",
+            "format-alt": "{time} {icon}",
             // "format-good": "", // An empty format will hide the module
             // "format-full": "",
             "format-icons": [
@@ -201,7 +206,7 @@
               "󰤨 "
             ],
             "tooltip-format": " {signalStrength}% [{essid} - {ifname}] {frequency}GHz\n{ipaddr}/{cidr}\nUP[{bandwidthUpBits}] DWN[{bandwidthDownBits}] TOT[{bandwidthTotalBits}]\nGATEWAY: {gwaddr}",
-            "format-alt": "{icon}<sub>{essid} ({signalStrength}%)</sub>",
+            "format-alt": "{icon}  {essid} <sub>({signalStrength}%)</sub>",
             "on-click-right": "nmgui" 
         },
         "pulseaudio": {
