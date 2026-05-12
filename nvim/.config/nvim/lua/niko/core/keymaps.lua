@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 local keymap = vim.keymap
 
 keymap.set("n", "<leader>nh", ":nohl<CR>")
+keymap.set("n", "<leader>ay", "<cmd>%y+<CR>")
 
 -- window management
 keymap.set("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
@@ -12,6 +13,9 @@ keymap.set("n", "<leader>h", "<C-w>h")
 keymap.set("n", "<leader>j", "<C-w>j")
 keymap.set("n", "<leader>k", "<C-w>k")
 keymap.set("n", "<leader>l", "<C-w>l")
+
+-- terminal window
+keymap.set("n", "<leader>ot", "<cmd>ter<CR>");
 
 -- tab management
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
@@ -37,3 +41,8 @@ keymap.set("n", "<leader>gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 keymap.set("n", "<leader>gf", "<cmd>lua vim.lsp.buf.definition()<CR>")
 keymap.set("n", "<leader>fx", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 keymap.set("n", "<leader>sv", "<cmd>lua vim.lsp.buf.hover()<CR>")
+
+-- Folding lines
+keymap.set("n", "<leader>cc", "za")
+keymap.set("n", "<leader>ca", "zM")
+keymap.set("n", "<leader>co", "zR")

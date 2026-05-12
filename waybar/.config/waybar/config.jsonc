@@ -3,8 +3,8 @@
     {
         "layer": "top", // Waybar at top layer
         "position": "top", // Waybar position (top|bottom|left|right)
-        "height": 26, // Waybar height (to be removed for auto height)
-        "width":1900, // Waybar width
+        "height": 20, // Waybar height (to be removed for auto height)
+        // "width":1900, // Waybar width
         "spacing": 2, // Gaps between modules (4px)
         // Choose the order of the modules
         "modules-left": [
@@ -17,7 +17,7 @@
         "modules-right": [
             "group/system",
             "group/systemTray",
-            "clock"
+            "group/actions"
         ],
 
         // Modules configuration
@@ -27,21 +27,22 @@
             "all-outputs": true,
             "warp-on-scroll": false,
             "format": "{icon} <sub>{windows}</sub>",
-            "window-rewrite-default": "",
+            "window-rewrite-default": " ",
             "window-rewrite": {
-                "class<chromium> title<.*youtube.*>": "",
+                "class<chromium> title<.*youtube.*>": " ",
                 "class<chromium> title<.*github.*>": " ",
                 "class<chromium> title<.*whatsapp.*>": "󰖣 ",
                 "class<org.kde.dolphin>": "󰉓 ",
-                "class<spotify>": "",        
-                "class<chromium>": "",
-                "class<steam>": "",
-                "class<vlc>": "󰕼",
+                "class<spotify>": " ",        
+                "class<chromium>": " ",
+                "class<steam>": " ",
+                "class<vlc>": "󰕼 ",
                 "class<anki>": "󰘸 ",
                 "title<.*discord.*>": " ",
                 "class<org.mozilla.Thunderbird>": "󰇮 ",
                 "title<.*nvim.*>": " ",           
                 "class<kitty>": " ",
+                "class<alacritty>": " ",
                 "class<code>": " "
             }
         },
@@ -51,12 +52,12 @@
             "dynamic-len": 50,
             "player-icons": {
                 "default": " ",
-                "spotify": "",
-                "vlc": "󰕼"
+                "spotify": " ",
+                "vlc": "󰕼 "
             },
             "status-icons": {
-                "playing": " ",
-                "paused": "",
+                "playing": "",
+                "paused": " ",
                 "stopped": " "
             },
             "dynamic-order": ["title", "artist"]
@@ -87,9 +88,8 @@
         "group/systemTray": {
             "orientation": "horizontal",
             "modules": [
-                "idle_inhibitor",
                 "custom/split",
-                "power-profiles-daemon",
+                "custom/weather",
                 "custom/split",
                 "pulseaudio",
                 "custom/split",
@@ -103,11 +103,21 @@
             ]
         },
 
+        "group/actions": {
+            "orientation": "horizontal",
+            "modules": [
+                "custom/split",
+                "clock",
+                "custom/split",
+                "idle_inhibitor"
+            ]
+        },
+
         "idle_inhibitor": {
             "format": "{icon}",
             "format-icons": {
-                "activated": "",
-                "deactivated": ""
+                "activated": " ",
+                "deactivated": " "
             }
         },
         "tray": {
@@ -127,13 +137,13 @@
             "format-alt": "{:%d/%m/%Y}"
         },
         "cpu": {
-            "format": "   {usage}%",
+            "format": " {usage}%",
             "on-click": "kitty -e btop"
         },
         "memory": {
-            "format": "  {}%",
+            "format": " {}%",
             "tooltip-format": "Used: {used}GB/{total}GB ({percentage}%)\nAvailable: {avail}GB\nSwap Used: {swapUsed}GB/{swapTotal}GB ({swapPercentage}%)",
-            "on-click": "kitty -e btop"
+            "on-click": "alacritty -e btop"
         },
         "temperature": {
             // "thermal-zone": 2,
@@ -141,8 +151,8 @@
             "critical-threshold": 80,
             "format": "{icon} {temperatureC}°C",
             "format-icons": ["", "", ""],
-            "tooltip-format": "Temperature: {temperatureC} °C",
-            "on-click": "kitty -e btop"
+            "tooltip-format": "Temperature: {temperatureC}°C",
+            "on-click": "alacritty -e btop"
         },
         "backlight": {
             "device": "eDP-1",
@@ -240,6 +250,13 @@
                 "suspend": "systemctl suspend",
                 "hibernate": "systemctl hibernate"
             }
+        },
+        "custom/weather": {
+            "exec": "/usr/bin/waybar-weather",
+            "restart-interval": 60,
+            "return-type": "json",
+            "hide-empty-text": true,
+            "on-click": "pkill -USR1 waybar-weather"
         }
     },
     {

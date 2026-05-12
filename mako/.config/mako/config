@@ -4,7 +4,7 @@ background-color=#000000
 text-color=#FFFFFF
 
 font=monospace 12
-width=260
+width=310
 height=120
 
 outer-margin=1
@@ -13,9 +13,20 @@ border-size=1
 border-color=#CFCFCF
 border-radius=2
 
+# Urgency
+# [urgency=low]
+# border-color=#cccccc
+#
+# [urgency=normal]
+# border-color=#d08770
+#
+# [urgency=high]
+# border-color=#bf616a
+# default-timeout=0
+
 # Icons
 icons=1
-max-icon-size=34
+max-icon-size=54
 icon-location=left
 
 # Position
@@ -33,5 +44,5 @@ actions=1
 
 # Binding
 on-button-left=invoke-default-action
-on-button-middle=dismiss-group
-on-button-right=dismiss
+on-button-middle=dismiss
+on-button-right=exec makoctl menu -n "$id" -- rofi -dmenu -p "Select action"

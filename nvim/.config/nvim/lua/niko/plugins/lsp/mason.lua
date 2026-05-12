@@ -8,6 +8,8 @@ return {
                 "lua_ls",
                 "clangd",
                 "cmake",
+                "denols",
+                "ts_ls",
             },
         },
         dependencies = {

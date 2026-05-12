@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="antsy"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -103,6 +103,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Real aliases
+alias i="yay -S"
+alias mv="mv -i"
+alias rm="rm -v"
+alias du-one="du --max-depth=1 --exclude=OneDrive -h | sort -h"
+alias dl-mp3="yt-dlp --cookies-from-browser chromium+kwallet6:Profile\ 2 -t mp3"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -117,3 +124,10 @@ export PATH="$PATH:/home/niko/Scripts"
 
 # path for bins
 export PATH="$PATH:/home/niko/bin"
+
+# sourcing Vulkan envs
+source /home/niko/libs/Vulkan/1.4.341.1/setup-env.sh
+
+# env for JDK
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk/
+export PATH="$PATH:$JAVA_HOME"
